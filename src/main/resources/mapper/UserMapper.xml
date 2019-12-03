@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.mapper.UserMapper">
+    <select id="count" resultType="java.lang.Integer">
+       select count(id) from user where province =#{province}
+    </select>
+    <select id="findDate" resultType="Ndate">
+        SELECT create_date,COUNT(*) count FROM user where DATE_SUB(CURDATE(), INTERVAL 6 DAY) &lt;= date(create_date) GROUP BY create_date
+    </select>
+</mapper>

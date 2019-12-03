@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.mapper.BannerMapper">
+
+    <select id="findAll" resultType="Banner">
+        select * from banner
+    </select>
+
+    <select id="select" resultType="Banner">
+        select * from banner LIMIT #{start},#{rows}
+    </select>
+
+    <select id="count" resultType="Integer">
+        select count(id) from banner
+    </select>
+
+
+    <update id="updateId">
+        update banner set title=#{title},status=#{status},des=#{des} where id =#{id}
+    </update>
+
+
+    <update id="updateIdPath">
+        update banner set img_path=#{img_path} where id =#{id}
+    </update>
+
+    <delete id="del">
+        delete from banner where id in
+        <foreach collection="array" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+
+    </delete>
+
+
+    <insert id="add">
+
+        insert into banner values(#{id},#{title},#{status},#{create_date},#{img_path},#{des})
+    </insert>
+
+
+</mapper>
